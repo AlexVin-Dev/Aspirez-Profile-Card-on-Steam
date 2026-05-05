@@ -173,65 +173,84 @@
                 text-align: center;
             }
         }
+        .aspirez_bio {
+            margin-top: 8px;
+            font-size: 12px;
+            color: #b0b9c2;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            word-break: break-word;
+        }
+        .aspirez_bio_icon {
+            font-size: 14px;
+            opacity: 0.7;
+        }
+        .aspirez_bio_text {
+            line-height: 1.3;
+        }
     `);
 
     function buildCard(userData) {
-    const block = document.createElement('div');
-    block.className = 'aspirez_steam_block';
-
-    const header = document.createElement('div');
-    header.className = 'aspirez_header';
-    header.textContent = 'Aspirez Profile';
-    block.appendChild(header);
-
-    const content = document.createElement('div');
-    content.className = 'aspirez_content';
-
-    if (!userData || !userData.found) {
-        content.innerHTML = `
-            <div class="aspirez_avatar">🎮</div>
-            <div class="aspirez_info">
-                <div class="aspirez_name">Не привязан к Aspirez</div>
-                <div class="aspirez_details">Свяжите профиль, чтобы отобразить достижения</div>
-            </div>
-            <div class="aspirez_link">
-                <a href="https://aspirez.ru" target="_blank">Привязать →</a>
-            </div>
-        `;
-    } else {
-        let rankHtml = '';
-        if (userData.currentrank) rankHtml = `<span>🏅 ${escapeHtml(userData.currentrank)}</span>`;
-        else if (userData.rank) rankHtml = `<span>⭐ ${escapeHtml(userData.rank)}</span>`;
-
-        // Блок биографии (если есть)
-        const bioHtml = userData.bio ? `
-            <div class="aspirez_bio">
-                <span class="aspirez_bio_icon">📝</span>
-                <span class="aspirez_bio_text">${escapeHtml(userData.bio)}</span>
-            </div>
-        ` : '';
-
-        content.innerHTML = `
-            <div class="aspirez_avatar">
-                ${userData.avatar ? `<img src="${escapeHtml(userData.avatar)}" alt="">` : '👤'}
-            </div>
-            <div class="aspirez_info">
-                <div class="aspirez_name">${escapeHtml(userData.username)}</div>
-                <div class="aspirez_details">
-                    <span>🎭 ${escapeHtml(userData.role || 'Игрок')}</span>
-                    ${rankHtml}
+        const block = document.createElement('div');
+        block.className = 'aspirez_steam_block';
+    
+        const header = document.createElement('div');
+        header.className = 'aspirez_header';
+        header.textContent = 'Aspirez Profile';
+        block.appendChild(header);
+    
+        const content = document.createElement('div');
+        content.className = 'aspirez_content';
+    
+        if (!userData || !userData.found) {
+            content.innerHTML = `
+                <div class="aspirez_avatar">🎮</div>
+                <div class="aspirez_info">
+                    <div class="aspirez_name">Не привязан к Aspirez</div>
+                    <div class="aspirez_details">Свяжите профиль, чтобы отобразить достижения</div>
                 </div>
-                ${bioHtml}
-            </div>
-            <div class="aspirez_link">
-                <a href="${escapeHtml(userData.profile_url || 'https://aspirez.ru')}" target="_blank">Профиль Aspirez →</a>
-            </div>
-        `;
+                <div class="aspirez_link">
+                    <a href="https://aspirez.ru" target="_blank">Привязать →</a>
+                </div>
+            `;
+        } else {
+            let rankHtml = '';
+            if (userData.currentrank) rankHtml = `<span>🏅 ${escapeHtml(userData.currentrank)}</span>`;
+            else if (userData.rank) rankHtml = `<span>⭐ ${escapeHtml(userData.rank)}</span>`;
+    
+            // Блок биографии (если есть)
+            const bioHtml = userData.bio ? `
+                <div class="aspirez_bio">
+                    <span class="aspirez_bio_icon">📝</span>
+                    <span class="aspirez_bio_text">${escapeHtml(userData.bio)}</span>
+                </div>
+            ` : '';
+    
+            content.innerHTML = `
+                <div class="aspirez_avatar">
+                    ${userData.avatar ? `<img src="${escapeHtml(userData.avatar)}" alt="">` : '👤'}
+                </div>
+                <div class="aspirez_info">
+                    <div class="aspirez_name">${escapeHtml(userData.username)}</div>
+                    <div class="aspirez_details">
+                        <span>🎭 ${escapeHtml(userData.role || 'Игрок')}</span>
+                        ${rankHtml}
+                    </div>
+                    ${bioHtml}
+                </div>
+                <div class="aspirez_link">
+                    <a href="${escapeHtml(userData.profile_url || 'https://aspirez.ru')}" target="_blank">Профиль Aspirez →</a>
+                </div>
+            `;
+        }
+    
+        block.appendChild(content);
+        return block;
     }
-
-    block.appendChild(content);
-    return block;
-}
 
     function escapeHtml(str) {
         if (!str) return '';
