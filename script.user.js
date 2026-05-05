@@ -1,16 +1,23 @@
 // ==UserScript==
-// @name         Aspirez Profile Card on Steam
-// @name:ru      Карточка профиля Aspirez в Steam
-// @version      3.0.0
-// @author       VelFan
-// @description  Вставляет карточку пользователя Aspirez в профиль Steam, стиль как у встроенных блоков
-// @match        https://steamcommunity.com/profiles/*
-// @match        https://steamcommunity.com/id/*
-// @icon         https://aspirez.ru/images/favicon.ico
-// @grant        GM_xmlhttpRequest
-// @grant        GM_addStyle
-// @connect      aspirez.ru
-// @connect      steamcommunity.com
+// @name            Aspirez Profile Card on Steam
+// @name:ru         Карточка профиля Aspirez в Steam
+// @namespace       https://aspirez.ru/
+// @version         3.0.1
+// @author          VelFan
+// @homepageURL     https://github.com/AlexVin-Dev/Aspirez-Profile-Card-on-Steam
+// @supportURL      https://github.com/AlexVin-Dev/Aspirez-Profile-Card-on-Steam/issues
+// @updateURL       https://raw.githubusercontent.com/AlexVin-Dev/Aspirez-Profile-Card-on-Steam/main/aspirez-steam-card.user.js
+// @downloadURL     https://raw.githubusercontent.com/AlexVin-Dev/Aspirez-Profile-Card-on-Steam/main/aspirez-steam-card.user.js
+// @description     Отображает информацию пользователя из Aspirez в профиле Steam
+// @description:ru  Показывает данные из сайта Aspirez (ник, ранг, роль) в карточке на странице профиля Steam
+// @match           https://steamcommunity.com/profiles/*
+// @match           https://steamcommunity.com/id/*
+// @icon            https://aspirez.ru/images/favicon.ico
+// @grant           GM_xmlhttpRequest
+// @grant           GM_addStyle
+// @connect         aspirez.ru
+// @connect         steamcommunity.com
+// @license         MIT
 // ==/UserScript==
 
 (function() {
